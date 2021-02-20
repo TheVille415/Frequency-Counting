@@ -73,9 +73,8 @@ class HashTable:
         # incrimenting pointer by 1 and making sure it doesnt exceed the size
         else:
           ptr = (ptr + 1) % self.size
-        
-      print("Table is full!")
-      return -1
+      self.arr[key_hash].append((key,value))
+      return key_hash
 
   # 4️⃣ TODO: Complete the print_key_values method.
 
@@ -89,9 +88,10 @@ class HashTable:
   # erase: 2
 
   def print_key_values(self):
-    if self.arr == None:
+# still need to iterate over and change the values of repeating locations
+    if self.size == None:
       print("empty")
       return -1
     else:
-      for i in range(self.size):
-        print(i)
+      for i in self.arr:
+        i.print_nodes()
