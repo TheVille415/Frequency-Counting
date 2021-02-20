@@ -46,7 +46,36 @@ class HashTable:
   # Should insert a key value pair into the hash table, where the key is the word and the value is a counter for the number of times the word appeared. When inserting a new word in the hash table, be sure to check if there is a Node with the same key in the table already.
 
   def insert(self, key, value):
-    pass
+    # dictionaries / hash tables store "key value pairs"
+    # finding the index where key value pair should be placed
+    key_hash = self.hash_func(key)
+
+    # linear probing 
+    # check if the bucket/slot is empty
+    if self.arr[key_hash] == None:
+
+      # this assigns the key value to the slot
+      self.arr[key_hash] = (key, value)
+      return key_hash
+      
+    # if its taken (bucket) loop
+    else:
+      # pointer is going to look and see if the bucket has something in it
+      ptr = (key_hash + 1 ) % self.size
+
+      # base condition
+      while ptr != key_hash: 
+        # if the next spot is open take that
+        if self.arr[ptr] == None:
+          self.arr[ptr] = (key, value)
+          return ptr
+
+        # incrimenting pointer by 1 and making sure it doesnt exceed the size
+        else:
+          ptr = (ptr + 1) % self.size
+        
+      print("Table is full!")
+      return -1
 
   # 4️⃣ TODO: Complete the print_key_values method.
 
