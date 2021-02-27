@@ -26,9 +26,11 @@ class LinkedList:
       else:
         current = current.next
         counter += 1
-
+    # Edited
     if found:
-      return counter
+      # current.data[0] = the word,  current.data[1] the number and we are adding +1
+      new_tuple = (current.data[0], (current.data[1] + 1 ))
+      current.data = new_tuple 
     else:
       return -1
 
@@ -53,5 +55,6 @@ class LinkedList:
       print('The linked list is empty.')
     else:
       for i in range(self.length()):
-        print(f'Node {i}: {current.data}')
+        # getting the word, and its frequency
+        print(f'{current.data[0]}: {current.data[1]}')
         current = current.next

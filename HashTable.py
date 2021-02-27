@@ -1,5 +1,5 @@
 from LinkedList import LinkedList
-
+# Shout out to Merissa and Brian
 class HashTable:
 
   def __init__(self, size):
@@ -40,7 +40,6 @@ class HashTable:
     return index
 
 
-
   # 3️⃣ TODO: Complete the insert method.
 
   # Should insert a key value pair into the hash table, where the key is the word and the value is a counter for the number of times the word appeared. When inserting a new word in the hash table, be sure to check if there is a Node with the same key in the table already.
@@ -49,37 +48,21 @@ class HashTable:
     # dictionaries / hash tables store "key value pairs"
     # finding the index where key value pair should be placed
     key_hash = self.hash_func(key)
+    new_tuple = (key, value)
 
-    # linear probing 
-    # check if the bucket/slot is empty
-    if self.arr[key_hash] == None:
+    # if the find method returns -1 it is not found
+    # create new tuple and append to hash table
+    if self.arr[key_hash].find(new_tuple) == -1:
+      self.arr[key_hash].append(new_tuple)
+    # else if you find the key add 1 bc of new_tuple
+    elif self.arr[key_hash].find(new_tuple) == True:
+      self.arr[key_hash]
 
-      # this assigns the key value to the slot
-      self.arr[key_hash] = (key, value)
-      return key_hash
-      
-    # if its taken (bucket) loop
-    else:
-      # pointer is going to look and see if the bucket has something in it
-      ptr = (key_hash + 1 ) % self.size
-
-      # base condition
-      while ptr != key_hash: 
-        # if the next spot is open take that
-        if self.arr[ptr] == None:
-          self.arr[ptr] = (key, value)
-          return ptr
-
-        # incrimenting pointer by 1 and making sure it doesnt exceed the size
-        else:
-          ptr = (ptr + 1) % self.size
-      self.arr[key_hash].append((key,value))
-      return key_hash
 
   # 4️⃣ TODO: Complete the print_key_values method.
 
   # Traverse through the every Linked List in the table and print the key value pairs.
-
+  # This goes through the list and then looks at the find function in LinkedList to return the key value pair
   # For example: 
   # a: 1
   # again: 1
@@ -88,10 +71,10 @@ class HashTable:
   # erase: 2
 
   def print_key_values(self):
-# still need to iterate over and change the values of repeating locations
     if self.size == None:
       print("empty")
       return -1
     else:
+      # loop over items in linked list and print them out from LinkedList.py
       for i in self.arr:
         i.print_nodes()

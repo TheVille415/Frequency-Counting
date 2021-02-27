@@ -26,7 +26,6 @@ while path.exists(filename) == False:
   filename = input("🔁  What is the name of the .txt file? ")
 
 
-
 # Creates a list of every word from the txt file without
 # spaces and punctuation. It also lowercases the words.
 
@@ -37,7 +36,6 @@ with open(filename,'r') as file:
       word = word.strip(string.punctuation)
       words_in_file.append(word.lower())
       
-
 
 
 # Prints message to user stating how many words are being added to the table.
